@@ -1,6 +1,6 @@
 from textnode import TextNode, TextType
 
-def main():
+def main() -> None:
     text = TextNode("Somde text", TextType.BOLD, "https://www.boot.dev")
     print(text)
 
