@@ -115,3 +115,6 @@ def text_to_textnodes(text: str) -> list[TextNode]:
     nodes = split_nodes_images(nodes)
     nodes = split_nodes_link(nodes)
     return nodes
+
+def text_to_children(text: str) -> list[LeafNode]:
+    return [text_node_to_html_node(node) for node in text_to_textnodes(text)]

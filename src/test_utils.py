@@ -145,6 +145,7 @@ class TestBlockToBlockType(unittest.TestCase):
     def test_paragraph(self):
         self.assertEqual(block_to_block_type("Just a plain paragraph."), BlockType.PARAGRAPH)
 
+    
 
 if __name__ == "__main__":
     unittest.main()

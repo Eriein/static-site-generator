@@ -54,3 +54,4 @@ def block_to_block_type(md: str) -> BlockType:
         return BlockType.ORDERED_LIST
     else:
         return BlockType.PARAGRAPH
+
