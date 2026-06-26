@@ -2,8 +2,8 @@
 
 [< Back Home](/)
 
-Give me a call anytime to chat about Tolkien!
+Give me an email anytime to chat about One Piece!
 
-`555-555-5555`
+`kolokeep@gmail.com`
 
-**"Váya márië."**
+**"X"**
