@@ -1,5 +1,5 @@
 import unittest
-from utils import extract_markdown_images, extract_markdown_links, markdown_to_blocks, block_to_block_type, BlockType
+from utils import extract_markdown_images, extract_markdown_links, markdown_to_blocks, block_to_block_type, BlockType, extract_title
 
 
 class TestUtils(unittest.TestCase):
@@ -145,7 +145,38 @@ class TestBlockToBlockType(unittest.TestCase):
     def test_paragraph(self):
         self.assertEqual(block_to_block_type("Just a plain paragraph."), BlockType.PARAGRAPH)
 
-    
+
+class TestExtractTitle(unittest.TestCase):
+    def test_simple_h1(self):
+        self.assertEqual(extract_title("# Hello"), "Hello")
+
+    def test_strips_whitespace(self):
+        self.assertEqual(extract_title("#  Hello World  "), "Hello World")
+
+    def test_h1_not_on_first_line(self):
+        md = "Some intro text\n# My Title\nMore content"
+        self.assertEqual(extract_title(md), "My Title")
+
+    def test_returns_first_h1_when_multiple(self):
+        md = "# First\n# Second"
+        self.assertEqual(extract_title(md), "First")
+
+    def test_h2_not_matched(self):
+        with self.assertRaises(ValueError):
+            extract_title("## Not an H1")
+
+    def test_hash_without_space_not_matched(self):
+        with self.assertRaises(ValueError):
+            extract_title("#NoSpace")
+
+    def test_no_header_raises(self):
+        with self.assertRaises(ValueError):
+            extract_title("Just a paragraph\nAnother line")
+
+    def test_empty_string_raises(self):
+        with self.assertRaises(ValueError):
+            extract_title("")
+
 
 if __name__ == "__main__":
     unittest.main()

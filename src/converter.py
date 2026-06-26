@@ -14,11 +14,13 @@ def heading_helper(block: str) -> tuple[str, int]:
     return block[heading_count + 1:], heading_count
 
 
-def quote_helper(block: str) -> list[ParentNode]:
+def quote_helper(block: str) -> list:
     children = []
     for line in block.split("\n"):
-        node = ParentNode("p", text_to_children(line[2:]))
-        children.append(node)
+        content = line[2:]
+        if not content.strip():
+            continue
+        children.extend(text_to_children(content))
     return children
 
 
